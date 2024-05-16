@@ -1,0 +1,29 @@
+{
+  "name": "dog-walker-automation-tests",
+  "version": "1.0.0",
+  "description": "This repo is a cypress automation test to Dog Walk site",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx cypress run",
+    "gui-test": "npx cypress open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wxmariixw/dog-walker-automation-tests"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wxmariixw/dog-walker-automation-tests/issues"
+  },
+  "homepage": "https://github.com/wxmariixw/dog-walker-automation-tests",
+  "devDependencies": {
+    "cypress": "^13.9.0",
+    "cypress-file-upload": "^5.0.8"
+  },
+  "dependencies": {
+    "gerador-validador-cpf": "^5.0.2",
+    "leite": "^0.2.0"
+  }
+}
