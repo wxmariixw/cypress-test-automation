@@ -5,7 +5,6 @@ Cypress.Commands.add('openForm', () => {
 
 Cypress.Commands.add('fillField', (field, fill) => {
     cy.get(field).type(fill)
-    cy.get('.button-register').click()
 })
 
 Cypress.Commands.add('fillForm', (pessoa) => {
@@ -19,15 +18,14 @@ Cypress.Commands.add('fillForm', (pessoa) => {
     cy.fillField(campo_email, pessoa.email)
     cy.fillField(campo_cpf, pessoa.cpf)
     cy.fillField(campo_cep, pessoa.cep)
+    cy.get(':nth-child(2) > :nth-child(2) > input').click()
     cy.fillField(campo_numero, pessoa.numero)
 
     cy.get('input[type="file"]').selectFile('cypress/fixtures/rg.jpeg', { force: true })
 })
 
 Cypress.Commands.add('submitForm', () => {
-    cy.intercept('POST', `https://jsonplaceholder.typicode.com/posts`).as('postRegister')
     cy.get('.button-register').click()
-    cy.wait('@postRegister').its('response.statusCode').should('be.equal', 201)
 })
 
 

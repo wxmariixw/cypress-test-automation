@@ -11,7 +11,10 @@ describe('Login - Caminho feliz', () => {
         
         cy.fillForm(pessoa)
 
+        cy.intercept('POST', `https://jsonplaceholder.typicode.com/posts`).as('postRegister')
         cy.submitForm()
+        cy.wait('@postRegister').its('response.statusCode').should('be.equal', 201)
+        
     });
 });
 
