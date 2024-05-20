@@ -11,6 +11,7 @@ describe('Login - Caminho feliz', () => {
         const nome = faker.name.findName()
 
         cy.fillField(campo_nome, nome)
+        cy.submitForm()
 
         cy.get(':nth-child(3) > :nth-child(2) > .field > .alert-error').should('not.exist')
 
@@ -18,6 +19,7 @@ describe('Login - Caminho feliz', () => {
 
     it('Campo de nome com números', () => {
         cy.fillField(campo_nome, '123456789')
+        cy.submitForm()
 
         cy.get(':nth-child(3) > :nth-child(2) > .field > .alert-error')
             .should('be.visible')
@@ -26,6 +28,7 @@ describe('Login - Caminho feliz', () => {
 
     it('Campo de nome com caracteres especiais', () => {
         cy.fillField(campo_nome, '!@#$%*()')
+        cy.submitForm()
 
         cy.get(':nth-child(3) > :nth-child(2) > .field > .alert-error')
             .should('be.visible')
@@ -34,6 +37,7 @@ describe('Login - Caminho feliz', () => {
 
     it('Campo de nome com caracteres alfanuméricos e especiais', () => {
         cy.fillField(campo_nome, 'Maria 123!@#')
+        cy.submitForm()
 
         cy.get(':nth-child(3) > :nth-child(2) > .field > .alert-error')
             .should('be.visible')
@@ -42,6 +46,7 @@ describe('Login - Caminho feliz', () => {
 
     it('Campo de nome vazio', () => {
         cy.get('.button-register').click()
+        cy.submitForm()
 
         cy.get(':nth-child(3) > :nth-child(2) > .field > .alert-error')
             .should('be.visible')
