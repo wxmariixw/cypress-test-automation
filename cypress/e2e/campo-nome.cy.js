@@ -21,7 +21,7 @@ describe('Login - Caminho feliz', () => {
 
         cy.get(':nth-child(3) > :nth-child(2) > .field > .alert-error')
             .should('be.visible')
-            .should('have.value', 'Caracteres numéricos não são aceitos neste campo')
+            .should('have.text', 'Caracteres numéricos não são aceitos neste campo')
     });
 
     it('Campo de nome com caracteres especiais', () => {
@@ -29,6 +29,22 @@ describe('Login - Caminho feliz', () => {
 
         cy.get(':nth-child(3) > :nth-child(2) > .field > .alert-error')
             .should('be.visible')
-            .should('have.value', 'Caracteres especiais não são aceitos neste campo')
+            .should('have.text', 'Caracteres especiais não são aceitos neste campo')
+    });
+
+    it('Campo de nome com caracteres alfanuméricos e especiais', () => {
+        cy.fillField(campo_nome, 'Maria 123!@#')
+
+        cy.get(':nth-child(3) > :nth-child(2) > .field > .alert-error')
+            .should('be.visible')
+            .should('have.text', 'Caracteres numéricos e especiais não são aceitos neste campo')
+    });
+
+    it('Campo de nome vazio', () => {
+        cy.get('.button-register').click()
+
+        cy.get(':nth-child(3) > :nth-child(2) > .field > .alert-error')
+            .should('be.visible')
+            .should('have.text', 'Informe o seu nome completo')
     });
 });
