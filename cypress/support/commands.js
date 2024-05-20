@@ -1,3 +1,8 @@
+Cypress.Commands.add('openForm', () => {
+    cy.visit('/')
+    cy.contains('Quero ser Dog Walker').click()
+})
+
 Cypress.Commands.add('fillForm', (pessoa) => {
     cy.get(':nth-child(3) > :nth-child(2) > .field > input').type(pessoa.nome)
     cy.get(':nth-child(3) > :nth-child(1) > input').type(pessoa.email)
