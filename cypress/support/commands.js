@@ -7,19 +7,13 @@ Cypress.Commands.add('fillField', (field, fill) => {
     cy.get(field).type(fill)
 })
 
-Cypress.Commands.add('fillForm', (pessoa) => {
-    const campo_nome = ':nth-child(3) > :nth-child(2) > .field > input'
-    const campo_email = ':nth-child(3) > :nth-child(1) > input'
-    const campo_cpf = ':nth-child(3) > :nth-child(2) > input'
-    const campo_cep = ':nth-child(4) > :nth-child(2) > :nth-child(1) > input'
-    const campo_numero = ':nth-child(4) > :nth-child(1) > input'
-    
-    cy.fillField(campo_nome, pessoa.nome)
-    cy.fillField(campo_email, pessoa.email)
-    cy.fillField(campo_cpf, pessoa.cpf)
-    cy.fillField(campo_cep, pessoa.cep)
+Cypress.Commands.add('fillForm', () => {
+    cy.fillField(Cypress.env('campos').campo_nome, Cypress.env('usuario').nome)
+    cy.fillField(Cypress.env('campos').campo_email, Cypress.env('usuario').email)
+    cy.fillField(Cypress.env('campos').campo_cpf, Cypress.env('usuario').cpf)
+    cy.fillField(Cypress.env('campos').campo_cep, Cypress.env('usuario').cep)
     cy.get(':nth-child(2) > :nth-child(2) > input').click()
-    cy.fillField(campo_numero, pessoa.numero)
+    cy.fillField(Cypress.env('campos').campo_numero, Cypress.env('usuario').numero)
 
     cy.get('input[type="file"]').selectFile('cypress/fixtures/rg.jpeg', { force: true })
 })
